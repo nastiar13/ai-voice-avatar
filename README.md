@@ -1,50 +1,154 @@
-# Welcome to your Expo app 👋
+# 🎭 AI Voice Avatar
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile app featuring an interactive 3D avatar with real-time lip sync animation. Type a message, and watch the avatar speak it with synchronized mouth movements.
 
-## Get started
+![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20Android%20%7C%20Web-blue)
+![React Native](https://img.shields.io/badge/React%20Native-Expo%20SDK%2054-61DAFB)
+![Three.js](https://img.shields.io/badge/3D-React%20Three%20Fiber-000000)
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## ✨ Features
 
-2. Start the app
+- 🎭 **Interactive 3D Avatar** - Ready Player Me avatar with morph targets
+- 🗣️ **Real-time Lipsync** - Mouth movements synchronized with speech
+- 🔊 **Text-to-Speech** - Uses device TTS via expo-speech
+- 👆 **Touch Controls** - Drag to rotate the avatar
+- 📱 **Cross-platform** - Works on iOS, Android, and Web
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 📸 Screenshots
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Landing Page | Experience Screen | Speaking |
+|:---:|:---:|:---:|
+| ![Landing](./assets/screenshots/landing-page.jpeg) | ![Experience](./assets/screenshots/experience-1.jpeg) | ![Speaking](./assets/screenshots/experience-3.jpeg) |
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🎬 Demo Video
 
-## Get a fresh project
+https://www.awesomescreenshot.com/video/47481167?key=f7c82e1614f9e363b85fb1a1c70f03a0
 
-When you're ready, run:
+> 📝 *Record a demo and add the video link above*
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **Expo SDK 54** | React Native framework with managed workflow |
+| **React Three Fiber** | React renderer for Three.js |
+| **Three.js** | 3D rendering engine |
+| **@react-three/drei** | Useful helpers for R3F (OrbitControls, Environment, etc.) |
+| **expo-gl** | OpenGL ES support for React Native |
+| **expo-speech** | Cross-platform Text-to-Speech |
+| **wawa-lipsync** | Viseme-based lip sync mapping |
+| **Ready Player Me** | 3D avatar with morph targets |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- Expo CLI (`npm install -g expo-cli`)
+- iOS Simulator / Android Emulator / Expo Go app
+
+### Installation
 
 ```bash
-npm run reset-project
+# Clone the repository
+git clone https://github.com/yourusername/ai-voice-call.git
+cd ai-voice-call
+
+# Install dependencies
+npm install
+
+# Start the development server
+npx expo start --clear
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Running the App
 
-## Learn more
+After starting the dev server:
 
-To learn more about developing your project with Expo, look at the following resources:
+- **iOS Simulator**: Press `i`
+- **Android Emulator**: Press `a`  
+- **Web Browser**: Press `w`
+- **Expo Go (physical device)**: Scan the QR code
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## 📁 Project Structure
 
-Join our community of developers creating universal apps.
+```
+ai-voice-call/
+├── app/
+│   ├── _layout.tsx      # Root layout with navigation
+│   ├── index.tsx        # Landing screen
+│   └── experience.tsx   # Main avatar experience
+├── components/
+│   ├── Avatar.tsx       # 3D avatar with lipsync
+│   └── SceneContainer.tsx # R3F Canvas setup
+├── hooks/
+│   └── useLipsync.ts    # Lipsync logic & TTS
+├── services/
+│   └── *.ts             # TTS service integrations
+└── assets/
+    └── screenshots/     # App screenshots
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🎯 How It Works
+
+1. **Avatar Loading**: Ready Player Me GLB model loaded via `useGLTF`
+2. **Morph Targets**: Avatar has `mouthOpen` and `mouthSmile` blend shapes
+3. **TTS**: `expo-speech` speaks the text aloud
+4. **Animation**: Character-to-viseme mapping drives mouth shapes at 60fps
+5. **Smooth Lerping**: Blendshape values interpolate smoothly
+
+---
+
+## 🔧 Configuration
+
+### Using a Custom Avatar
+
+Replace the avatar URL in `components/Avatar.tsx`:
+
+```typescript
+const DEFAULT_AVATAR_URL = 'https://models.readyplayer.me/YOUR_AVATAR_ID.glb';
+```
+
+Generate avatars at [readyplayer.me](https://readyplayer.me)
+
+### Adjusting Speech Rate
+
+In `hooks/useLipsync.ts`, modify the speech rate:
+
+```typescript
+Speech.speak(text, {
+    rate: 0.8, // 0.1 (slow) to 2.0 (fast)
+});
+```
+
+---
+
+## 📜 License
+
+MIT License - feel free to use this project for personal or commercial purposes.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a PR.
+
+---
+
+<p align="center">
+  Made with ❤️ using React Native + Three.js
+</p>

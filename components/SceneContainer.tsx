@@ -5,17 +5,20 @@ import { StyleSheet, View } from 'react-native';
 
 interface SceneContainerProps {
     children?: React.ReactNode;
+    enableOrbitControls?: boolean;
+    enableZoom?: boolean;
+    cameraPosition?: [number, number, number];
 }
 
-export const SceneContainer: React.FC<SceneContainerProps> = ({ children }) => {
+export const SceneContainer: React.FC<SceneContainerProps> = ({ children, enableOrbitControls = true, enableZoom = true, cameraPosition = [0, 0.2, 2] }) => {
     return (
         <View style={styles.container}>
             <Canvas
                 shadows
                 gl={{ localClippingEnabled: true }}
             >
-                <PerspectiveCamera makeDefault position={[0, 0.2, 3]} fov={50} />
-                <OrbitControls enablePan={false} />
+                <PerspectiveCamera makeDefault position={cameraPosition} fov={50} />
+                {enableOrbitControls && <OrbitControls enablePan={false} enableZoom={enableZoom} />}
 
                 <ambientLight intensity={0.5} />
                 <directionalLight

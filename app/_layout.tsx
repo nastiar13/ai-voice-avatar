@@ -10,6 +10,13 @@ if (typeof ProgressEvent === 'undefined')
   global.ProgressEvent = class ProgressEvent { };
 }
 
+// Suppress annoying EXGL warnings
+const originalConsoleLog = console.log;
+console.log = (...args) => {
+  if (args[0]?.includes?.('EXGL')) return;
+  originalConsoleLog(...args);
+};
+
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
