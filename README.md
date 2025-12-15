@@ -29,7 +29,6 @@ A React Native mobile app featuring an interactive 3D avatar with real-time lip 
 
 https://www.awesomescreenshot.com/video/47481167?key=f7c82e1614f9e363b85fb1a1c70f03a0
 
-> 📝 *Record a demo and add the video link above*
 
 ---
 
